@@ -1,11 +1,10 @@
 import string
 
 #collections of possible input and outputs
+desserts_In =['tiramisu','cream','macarons','choco']
+desserts_Out = ['Great! What do you want to know about?:']
 
-desserts_In =['tiramisu','cream puff','macarons','choco cake']
-desserts_Out = 'Great! What do you want to know about?:'
-
-user_choice = ['ingredient','tool', 'steps to make it (just type steps)']
+user_choice = ['ingredient','tool', 'steps']
 
 tiramisu_ing = ['4 eggs','130g of sugar','53g cake flour', '7g of cocoa powder', '3g instant coffee','45ml milk','25g unsalted butter','200g mascarpone cheese','100ml heavy cream','20ml hot water','2 gelatin sheets or 3g gelatin powder']
 cream_ing = ['20g butter','30g water', '180ml milk', '40g flour', '3 egg', '1/2 vanilla bean or 1/2 teaspoon of vanilla extract', '150ml heavy cream']
@@ -20,17 +19,17 @@ macarons_steps = ['1)Beat 70g egg whites and gradually add 60g of sugar 1/3 at a
 
 choco_steps = ['1)chop up the chocolate and put it into a bowl','2)Get a bigger bowl and pour hot water in(122 degree F)','3)Put the chocolate bowl on top of the hot water bowl and use a spatuala to mix the chocolate until it melts','4)Pour in 50g heavy cream into the melted chocolate and mix','5)Pour in the beaten egg into the chocolate bowl and mix again','6)take out the chocolate bowl out of the hot water and sift 10g of cake flour into the chocolate and mix well','7)Pour it into a cake pan lined with parchment paper(22x6)','8)Get a towel, place it underneath the pan and slam it down until you get rid of most bubbles in the cake mix', '9)Bake it in an oven preheated to 338 degree F for 17 min(be careful not to bake to much)','10) Take it out of the oven. Sift powdered sugar ontop of the cake and its ready to serve! Enjoy!']
 
-tiramisu_tools =['spatuala','hand mixer or whisk','at least 4 bowls or more','a cake pan', 'parchment paper','piping bag', 'sifter','*optional cooking thermometer','digital scale']
-cream_tools =['spatuala','hand mixer or whisk','at least 4 bowls or more','a cake pan', 'parchment paper','piping bag', 'sifter','*optional cooking thermometer','digital scale']
-macarons_tools =['spatuala','hand mixer or whisk','at least 4 bowls or more','a cake pan', 'parchment paper','piping bag', 'sifter','*optional cooking thermometer','digital scale']
-choco_tools =['spatuala','hand mixer or whisk','at least 4 bowls or more','a cake pan', 'parchment paper','piping bag', 'sifter','*optional cooking thermometer','digital scale']
+tiramisu_tools =['spatula','hand mixer or whisk','at least 4 bowls or more','a cake pan', 'parchment paper','piping bag', 'sifter','*optional cooking thermometer','digital scale']
+cream_tools =['spatula','hand mixer or whisk','at least 4 bowls or more','a cake pan', 'parchment paper','piping bag', 'sifter','*optional cooking thermometer','digital scale']
+macarons_tools =['spatula','hand mixer or whisk','at least 4 bowls or more','a cake pan', 'parchment paper','piping bag', 'sifter','*optional cooking thermometer','digital scale']
+choco_tools =['spatula','hand mixer or whisk','at least 4 bowls or more','a cake pan', 'parchment paper','piping bag', 'sifter','*optional cooking thermometer','digital scale']
 
 
 def string_concatenator(string1, string2, separator):
     output = string1 + separator+ string2
     return output
 
-def list_to_string (input_list, separator):
+def list_to_string(input_list, separator):
     output = input_list[0]
     for item in input_list[1:]:
         output = string_concatenator(output, item, separator)
@@ -44,7 +43,7 @@ def remove_punctuation(input_string):
             out_string+=x
     return out_string
 
-def prepare_text(input_string):
+def prepare_text(input_list):
     """this method converts all strings into a lower case 
     and also removes punctuation
     
@@ -52,14 +51,15 @@ def prepare_text(input_string):
     
     output: list
     """
+    input_string = list_to_string(input_list,'')
     temp_string = input_string.lower()
     temp_string = remove_punctuation(temp_string)
     out_list = temp_string.split()
     return out_list
 
 def is_in_list(list_one, list_two):
-    for element in list_one:
-        if element in list_two:
+    for element in list_two:
+        if element in list_one:
             return True
     return False
 
@@ -69,42 +69,31 @@ def end_chat (input_list):
         return True
     else:
         return False
-        
-def is_in_list(list_one, list_two):
-    
-    for element in list_one:
-        if element in list_two:
-            return True
-    return False
 
 #Functions I created specifically for Baking Bot
 def start():
     #initiates the conversation
-    print('Mochi: Hi,Im Mochi! Welcome to Baking Advice!')
     print('What kind of desserts do you want to make today?')
-    print('(choose from this list: tiramisu, cream puff, macarons, chocolate cake, or idk and Ill choose for you)')
+    print('(choose from this list: tiramisu, cream puff(just type cream), macarons, chocolate cake (just type choco)')
             
 def is_Tiramisu(input_list):
-    """checks if the input is 'tiramisu'"""
-    
+    """checks if the input is 'tiramisu"""
     check = ''
     check = list_to_string(input_list,'' )
     if check.lower() == 'tiramisu':
         return True
     else:
-    return False
+        return False
         
-def is_Cream_Puff(input_list):
-     
+def is_Cream_Puff(input_list):   
     check = ''
     check = list_to_string(input_list,'' )
-    if check.lower() == 'cream puff':
+    if check.lower() == 'cream':
         return True
     else:
         return False
 
-def is_Macarons(input_list):
-     
+def is_Macarons(input_list):     
     check = ''
     check = list_to_string(input_list,'' )
     if check.lower() == 'macarons':
@@ -116,7 +105,7 @@ def is_Choco_Cake(input_list):
      
     check = ''
     check = list_to_string(input_list,'' )
-    if check.lower() == 'choco cake':
+    if check.lower() == 'choco':
         return True
     else:
         return False 
@@ -148,61 +137,20 @@ def is_Steps(input_list):
         return True
     else:
         return False
-    
-def is_idk(input_list):
-    check = ''
-    check = list_to_string(input_list,'' )
-    if check.lower() == 'idk':
-        return True
-    else:
-        return False
-
-def get_TiramisuI(input_list):
-    #return the list of ingredients for tiramisu
-    return tiramisu_ing
-
-def get_Cream_PuffI(input_list):
-    #return the list of ingredients for cream puff
-    return cream_ing
-
-def get_MacaronsI(input_list):
-    #return the list of ingredients for macarons
-    return macarons_ing
-
-def get_ChocoI(input_list):
-    #return the list of ingredients for choco cake
-    return choco_ing
-
-def get_TiramisuS(input_list):
-    #return the list of steps for tiramisu
-    return tiramisu_steps
-
-def get_Cream_PuffS(input_list):
-    #return the list of steps for cream puff
-    return cream_steps
-
-def get_MacaronsS(input_list):
-    #return the list of steps for macarons
-    return macarons_steps
-
-def get_ChocoS(input_list):
-    #return the list of steps for choco cake
-    return choco_steps
-
 
 def lets_talk():
     """Main function to run the bot"""
-    
     chat = True
-    
     outs = []
+    print('Mochi: Hi,Im Mochi! Welcome to Baking Advice!')
 
     #Checks that the conversation is still ongoing
     while chat:
-    
+        start()
         #Gets the users input
         msg = input('You :\t')
         out_msg = None
+        msg = prepare_text(msg)
         
         #Check if input is 'tiramisu'
         tiramisu = is_Tiramisu(msg)
@@ -228,84 +176,77 @@ def lets_talk():
         msg = prepare_text(msg)
         
         if end_chat(msg):
-            out_msg = 'Sayonara~ ꒰๑•௰•๑꒱♫'
+            out_msg = ['Sayonara~ ꒰๑•௰•๑꒱♫']
             chat = False
             
         if not out_msg:
             
             #if the input is one of the dessert choices I provided it runs
-            
-            if not is_in_list(msg,outs):
-                out_msg = 'Sorry I dont know how to make that ꒰´꒳`꒱?... please choose from the list I provided!'+desserts_In
                 
-            elif is_in_list(msg, outs):
-                out_msg = desserts_Out + user_choice
-                
-                if tiramisu == True:
+            if is_in_list(msg, desserts_In):
+                out_msg = 'Great! What do you want to know about?:' + 'ingredient','tool', 'steps to make it (just type steps)'
+                print(out_msg)
+                msg = input('You :\t')
+                if tiramisu:
                     #If the user puts in an input not in the list provided it will return the out_msg
-                    if not is_in_list(msg,outs):
-                        out_msg = 'follow the direction! ꒰｀꒳´꒱ Choose from:' + user_choice
-             
+                    if not is_in_list(msg,user_choice):
+                        out_msg = ['follow the direction! ꒰｀꒳´꒱', 'Choose from: ingredient, tool, steps to make it (just type steps)']
                     #If the user puts in an input from the list provided it will continue
-                    elif is_in_list(msg,outs):
-                        if tool == True:
-                            return tiramisu_tools
-                        elif ingredient == True:
-                            get_TiramisuI(msg)
-                        elif steps == True:
-                            get_TiramisuS(msg)
+                    elif is_in_list(msg,user_choice):
+                        if is_Tool(msg):
+                            out_msg = tiramisu_tools
+                        elif is_Ingredient(msg):
+                            out_msg = tiramisu_ing
+                        elif is_Steps(msg):
+                            out_msg = tiramisu_steps
                         
-                elif cream_puff == True:
+                elif cream_puff:
                     #If the user puts in an input not in the list provided it will return the out_msg
-                    if not is_in_list(msg,outs):
-                        out_msg = 'follow the direction! ꒰｀꒳´꒱ Choose from:' + user_choice
-             
+                    if not is_in_list(msg,user_choice):
+                        out_msg = ['follow the direction! ꒰｀꒳´꒱', 'Choose from: ingredient, tool, steps to make it (just type steps)']
                     #If the user puts in an input from the list provided it will continue
-                    elif is_in_list(msg, outs):
-                        if tool == True:
-                            return cream_tools
-                        elif ingredient == True:
-                            get_CreamI(msg)
-                        elif steps == True:
-                            get_CreamS(msg)
+                    elif is_in_list(msg,user_choice):
+                        if is_Tool(msg):
+                            out_msg = cream_tools
+                        elif is_Ingredient(msg):
+                            out_msg = cream_ing
+                        elif is_Steps(msg):
+                            out_msg = cream_steps
                 
-                elif macarons == True:
+                elif macarons:
                     #If the user puts in an input not in the list provided it will return the out_msg
-                    if not is_in_list(msg,outs):
-                        out_msg = 'follow the direction! ꒰｀꒳´꒱ Choose from:' + user_choice
+                    if not is_in_list(msg,user_choice):
+                        out_msg = ['follow the direction! ꒰｀꒳´꒱', 'Choose from: ingredient, tool, steps to make it (just type steps)']
              
                     #If the user puts in an input from the list provided it will continue
-                    elif is_in_list(msg, outs):
-                        if tool == True:
-                            return macarons_tools
-                        elif ingredient == True:
-                            get_MacaronsI(msg)
-                        elif steps == True:
-                            get_MacaronsS(msg)
+                    elif is_in_list(msg, user_choice):
+                        if is_Tool(msg):
+                            out_msg = macarons_tools
+                        elif is_Ingredient(msg):
+                            out_msg = macarons_ing
+                        elif is_Steps(msg):
+                            out_msg = macarons_steps
                            
                 elif choco_cake == True:
                     #If the user puts in an input not in the list provided it will return the out_msg
-                    if not is_in_list(msg,outs):
-                        out_msg = 'follow the direction! ꒰｀꒳´꒱ Choose from:' + user_choice
+                    if not is_in_list(msg,user_choice):
+                        out_msg = ['follow the direction! ꒰｀꒳´꒱', 'Choose from: ingredient, tool, steps to make it (just type steps)']
              
                     #If the user puts in an input from the list provided it will continue
-                    elif is_in_list(msg, outs):
-                        if tool == True:
-                            return choco_tools
-                        elif ingredient == True:
-                            get_ChocoI(msg)
-                        elif steps == True:
-                            get_ChocoS(msg)
+                    elif is_in_list(msg, user_choice):
+                        if is_Tool(msg):
+                            out_msg = choco_tools
+                        elif is_Ingredient(msg):
+                            out_msg = choco_ing
+                        elif is_Steps(msg):
+                            out_msg = choco_steps
 
-                 ##Prints error statement if it doesnt match other if statement
-                 else:
-                    out_msg = 'Hmm sorry I dont understand ꒰•̤▿•̤*ૢ꒱??'    
+            else:
+                out_msg = ['Hmm sorry I dont understand ꒰•̤▿•̤*ૢ꒱???... please choose from the list I provided!'+"(tiramisu,cream puff,macarons,choco cake)"]
             
-            #prints response to user
-            print('Mochi: ',out_msg)     
+            
+        #prints response to user
+        print('Mochi: ')
+        for x in out_msg:
+            print("    " + x)
                     
-            
-
-    
-    
-        
