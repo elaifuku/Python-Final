@@ -24,7 +24,7 @@ cream_tools =['spatula','hand mixer or whisk','at least 4 bowls or more','a cake
 macarons_tools =['spatula','hand mixer or whisk','at least 4 bowls or more','a cake pan', 'parchment paper','piping bag', 'sifter','*optional cooking thermometer','digital scale']
 choco_tools =['spatula','hand mixer or whisk','at least 4 bowls or more','a cake pan', 'parchment paper','piping bag', 'sifter','*optional cooking thermometer','digital scale']
 
-
+#functions borrowed from homework A3
 def string_concatenator(string1, string2, separator):
     output = string1 + separator+ string2
     return output
@@ -85,7 +85,8 @@ def is_Tiramisu(input_list):
     else:
         return False
         
-def is_Cream_Puff(input_list):   
+def is_Cream_Puff(input_list): 
+     """checks if the input is 'cream"""
     check = ''
     check = list_to_string(input_list,'' )
     if check.lower() == 'cream':
@@ -93,7 +94,8 @@ def is_Cream_Puff(input_list):
     else:
         return False
 
-def is_Macarons(input_list):     
+def is_Macarons(input_list): 
+     """checks if the input is 'macarons"""
     check = ''
     check = list_to_string(input_list,'' )
     if check.lower() == 'macarons':
@@ -102,7 +104,7 @@ def is_Macarons(input_list):
         return False
     
 def is_Choco_Cake(input_list):
-     
+      """checks if the input is 'choco"""
     check = ''
     check = list_to_string(input_list,'' )
     if check.lower() == 'choco':
@@ -111,7 +113,7 @@ def is_Choco_Cake(input_list):
         return False 
     
 def is_Ingredient(input_list):
-     
+    """checks if the input is 'ingredient"""
     check = ''
     check = list_to_string(input_list,'' )
     if check.lower() == 'ingredient':
@@ -121,7 +123,7 @@ def is_Ingredient(input_list):
 
 
 def is_Tool(input_list):
-     
+     """checks if the input is 'tool""" 
     check = ''
     check = list_to_string(input_list,'' )
     if check.lower() == 'tool':
@@ -130,7 +132,7 @@ def is_Tool(input_list):
         return False
 
 def is_Steps(input_list):
-     
+     """checks if the input is 'steps""" 
     check = ''
     check = list_to_string(input_list,'' )
     if check.lower() == 'steps':
@@ -240,7 +242,7 @@ def lets_talk():
                             out_msg = choco_ing
                         elif is_Steps(msg):
                             out_msg = choco_steps
-
+            #when input does not match any of the conditions it prints out_msg
             else:
                 out_msg = ['Hmm sorry I dont understand ꒰•̤▿•̤*ૢ꒱???... please choose from the list I provided!'+"(tiramisu,cream puff,macarons,choco cake)"]
             
