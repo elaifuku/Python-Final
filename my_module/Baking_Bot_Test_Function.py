@@ -7,6 +7,7 @@ from my_module.Baking_Bot_Function.py import *
 test_string = 'hello, People'
 test_list = ['hello,','People']
 
+#test the functions to make sure it runs the way its supposed to run
 def string_concatenator():
     """Tests string_concatenator function"""
     assert string_concatenator('hello','People',',') == test_string 
